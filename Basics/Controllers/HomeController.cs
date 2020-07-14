@@ -25,6 +25,20 @@ namespace Basics.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "Claim.DoB")]
+        public IActionResult SecretPolicy()
+        {
+            return View("Secret");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult SecretRole()
+        {
+            return View("Secret");
+        }
+
+        [HttpGet]
         public IActionResult Authenticate()
         {
             var grandmaClaims = new List<Claim>()
